@@ -30,7 +30,7 @@ public class PrenotationControllers {
 
 
     // GET ID
-    @GetMapping("/{userId}") // Tutti gli utenti possono leggere il profilo di un altro utente
+    @GetMapping("/{userId}")
     public Prenotation findByPrenotationId(@PathVariable UUID prenotationId) {
         return this.prenotationService.findByPrenotationId(prenotationId);
     }

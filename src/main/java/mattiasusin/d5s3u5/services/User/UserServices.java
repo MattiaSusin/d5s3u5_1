@@ -5,12 +5,14 @@ import mattiasusin.d5s3u5.exceptions.BadRequestException;
 import mattiasusin.d5s3u5.exceptions.NotFoundException;
 import mattiasusin.d5s3u5.playloads.User.NewUserDTO;
 import mattiasusin.d5s3u5.repositories.UsersRepository;
-import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -24,8 +26,12 @@ public class UserServices {
     private PasswordEncoder bcrypt;
 
     // GET ALL
-    public List<User> findAll() {
-        return this.usersRepository.findAll(); }
+    public Page<User> findALl(int page, int size, String sortBy){
+        if (page > 100) page = 100;
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        return this.usersRepository.findAll(pageable);
+    }
 
     // GET ID
     public User findByUserId(UUID utenteid) {
