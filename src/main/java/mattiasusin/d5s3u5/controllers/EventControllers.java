@@ -56,6 +56,13 @@ public class EventControllers {
     public Event findByEventIdAndUpdate(@PathVariable UUID eventId,@RequestBody Event body){
         return this.eventServices.findByEventIdAndUpdate(eventId,body);
     }
+    // DELETE
+    @DeleteMapping("/{eventId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Event findByEventIdAndDelete(@PathVariable UUID eventId){
+        this.eventServices.findByEventIdAndDelete(eventId);
+        return null;
+    }
 
 }
 

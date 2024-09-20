@@ -3,8 +3,7 @@ package mattiasusin.d5s3u5.services;
 import mattiasusin.d5s3u5.entities.Event;
 import mattiasusin.d5s3u5.exceptions.NotFoundException;
 import mattiasusin.d5s3u5.playloads.NewEventDTO;
-import mattiasusin.d5s3u5.playloads.NewEventRespDTO;
-import mattiasusin.d5s3u5.repositories.EventsRepositoy;
+import mattiasusin.d5s3u5.repositories.EventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +16,7 @@ import java.util.UUID;
 @Service
 public class EventServices {
     @Autowired
-    private EventsRepositoy eventsRepositoy;
+    private EventsRepository eventsRepository;
 
     // GET ALL OK
 
@@ -25,22 +24,23 @@ public class EventServices {
         if (page > 100) page = 100;
 
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        return this.eventsRepositoy.findAll(pageable);
+        return this.eventsRepository.findAll(pageable);
     }
 
     //POST
     public Event saveEvent(NewEventDTO body){
         Event newEvent = new Event(body.title(),body.description(),body.place_available(),body.date(),body.place());
 
-        return this.eventsRepositoy.save(newEvent);
+        return this.eventsRepository.save(newEvent);
     }
 
     // GET ID
     public Event findByEventId(UUID eventId){
-        return this.eventsRepositoy.findById(eventId).orElseThrow(() -> new NotFoundException(eventId));
+        return this.eventsRepository.findById(eventId).orElseThrow(() -> new NotFoundException(eventId));
     }
 
-    // DELETE
+
+
 
     // PUT
     public Event findByEventIdAndUpdate(UUID eventId,Event newUserData){
@@ -52,9 +52,16 @@ public class EventServices {
         found.setDate(newUserData.getDate());
         found.setPlace(newUserData.getPlace());
 
-        return this.eventsRepositoy.save(found);
+        return this.eventsRepository.save(found);
     }
 
+    // DELETE
+
+    public Event findByEventIdAndDelete(UUID eventId){
+        Event found = this.findByEventId(eventId);
+        this.eventsRepository.delete(found);
+        return found;
+    }
 
 
 
