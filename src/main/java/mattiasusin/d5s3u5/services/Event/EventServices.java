@@ -1,4 +1,4 @@
-package mattiasusin.d5s3u5.services;
+package mattiasusin.d5s3u5.services.Event;
 
 import mattiasusin.d5s3u5.entities.Event;
 import mattiasusin.d5s3u5.exceptions.NotFoundException;
@@ -18,7 +18,7 @@ public class EventServices {
     @Autowired
     private EventsRepository eventsRepository;
 
-    // GET ALL OK
+    // GET ALL
 
     public Page<Event> findALl(int page, int size, String sortBy){
         if (page > 100) page = 100;

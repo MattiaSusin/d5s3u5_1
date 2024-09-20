@@ -26,8 +26,8 @@ public class User implements UserDetails {
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID id;
-    private String nome;
-    private String cognome;
+    private String name;
+    private String surname;
     private String email;
     private String password;
 
@@ -35,12 +35,12 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String cognome, String email, String nome, String password, Role role) {
-        this.cognome = cognome;
+    public User(String surname, String email, String name, String password, String role) {
+        this.surname = surname;
         this.email = email;
-        this.nome = nome;
+        this.name = name;
         this.password = password;
-        this.role = role;
+        this.role = Role.valueOf(role);
     }
     public List<SimpleGrantedAuthority> getAuthorities() {
 
@@ -59,8 +59,8 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +

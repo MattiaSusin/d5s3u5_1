@@ -13,7 +13,7 @@ public record NewEventDTO(
         @Size(min = 5, max = 30, message = "La descrizione deve essere compresa tra 5 e 30 caratteri")
         String description,
         int place_available
-,        LocalDate date,
+,       LocalDate date,
         @NotEmpty(message = "La città è obbligatoria")
         @Size(min = 3, message = "La città deve avere almeno 4 caratteri")
         String place){}
