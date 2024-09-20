@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+
+    // IMPORTI
+
     @Autowired
     private UserServices userServices;
 
@@ -18,6 +21,9 @@ public class AuthService {
 
     @Autowired
     private PasswordEncoder bcrypt;
+
+
+    // GENERATE PW BCRYPT
 
     public String checkAndGenerate(UserLoginDTO body) {
 

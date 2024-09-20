@@ -11,19 +11,23 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/users")
 public class UserControllers {
+
+    // IMPORTI
+
     @Autowired
     private UserServices userServices;
 
-
-    //Get By ID
-    @GetMapping("/{userId}")
-    public User findByUserId(@PathVariable UUID utenteId) {
-        return this.userServices.findByUserId(utenteId);
-    }
     //GET ALL
     @GetMapping
     public List<User> findAll() {
         return userServices.findAll();
     }
+
+    // GET ID
+    @GetMapping("/{userId}")
+    public User findByUserId(@PathVariable UUID utenteId) {
+        return this.userServices.findByUserId(utenteId);
+    }
+
 }
 

@@ -14,25 +14,30 @@ import java.util.UUID;
 
 @Service
 public class UserServices {
+
+    // IMPORTI
+
     @Autowired
     private UsersRepository usersRepository;
     @Autowired
     private PasswordEncoder bcrypt;
 
-    //Trova tramite Id
+    // GET ALL
+    public List<User> findAll() {
+        return this.usersRepository.findAll(); }
+
+    // GET ID
     public User findByUserId(UUID utenteid) {
         return this.usersRepository.findById(utenteid).orElseThrow(() -> new NotFoundException(utenteid));
 
     }
-    //ALL
-    public List<User> findAll() {
-        return this.usersRepository.findAll(); }
 
-    //Trova tramite email
+    // FIND EMAIL
     public User findByEmail (String email) {
         return usersRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("l'utente con l'email" + email + "non è stato trovato!!!"));
     }
-    //Salvataggio
+    
+    // SAVE
     public User save(NewUserDTO body) {
         this.usersRepository.findByEmail(body.email()).ifPresent(user -> {throw new BadRequestException("l'email"+ body.email() + "in uso");});
         User newUtente = new User(body.surname(),body.email(), body.name(), bcrypt.encode(body.password()),body.role());
