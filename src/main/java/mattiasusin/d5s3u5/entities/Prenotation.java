@@ -1,6 +1,7 @@
 package mattiasusin.d5s3u5.entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,12 @@ import java.util.UUID;
 public class Prenotation {
 
     @Id
+    @GeneratedValue
+    @Setter(AccessLevel.NONE)
     private UUID id;
+
+    private int ReservedSeats;
+
 
     @ManyToOne
     @JoinColumn(name = "utente_id")
@@ -28,20 +34,23 @@ public class Prenotation {
 
     // COSTRUTTORI
 
-    public Prenotation(User user, Event event) {
+    public Prenotation(int reservedSeats, User user, Event event) {
+        ReservedSeats = reservedSeats;
         this.user = user;
         this.event = event;
     }
 
-    // TO STRING
 
+    // TO STRING
 
     @Override
     public String toString() {
         return "Prenotation{" +
                 "id=" + id +
+                ", ReservedSeats=" + ReservedSeats +
                 ", user=" + user +
                 ", event=" + event +
                 '}';
     }
+}
 }

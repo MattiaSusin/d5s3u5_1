@@ -36,5 +36,7 @@ public class PrenotationService {
         return this.prenotationRepository.findById(prenotationId).orElseThrow(() -> new NotFoundException(prenotationId));
     }
 
+                                        // Non sono riuscito a finire per mancanza di tempo
+
 
 }
