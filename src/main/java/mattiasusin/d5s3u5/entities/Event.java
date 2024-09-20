@@ -1,13 +1,12 @@
 package mattiasusin.d5s3u5.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import mattiasusin.d5s3u5.enums.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.UUID;
@@ -29,7 +28,14 @@ public class Event {
     private Date date;
     private String place;
 
+
+
+
     // ONE TO MANY --> PRENOTAZIONE
+    @ManyToOne
+    @JoinColumn(name = "organizer_id")
+    private User user;
+
 
     // COSTRUTTORI
 
