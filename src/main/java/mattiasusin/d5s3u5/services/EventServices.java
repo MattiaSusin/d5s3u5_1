@@ -2,7 +2,7 @@ package mattiasusin.d5s3u5.services;
 
 import mattiasusin.d5s3u5.entities.Event;
 import mattiasusin.d5s3u5.exceptions.NotFoundException;
-import mattiasusin.d5s3u5.playloads.NewEventDTO;
+import mattiasusin.d5s3u5.playloads.Event.NewEventDTO;
 import mattiasusin.d5s3u5.repositories.EventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

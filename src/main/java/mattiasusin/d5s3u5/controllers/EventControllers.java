@@ -2,8 +2,8 @@ package mattiasusin.d5s3u5.controllers;
 
 import mattiasusin.d5s3u5.entities.Event;
 import mattiasusin.d5s3u5.exceptions.BadRequestException;
-import mattiasusin.d5s3u5.playloads.NewEventDTO;
-import mattiasusin.d5s3u5.playloads.NewEventRespDTO;
+import mattiasusin.d5s3u5.playloads.Event.NewEventDTO;
+import mattiasusin.d5s3u5.playloads.Event.NewEventRespDTO;
 import mattiasusin.d5s3u5.services.EventServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

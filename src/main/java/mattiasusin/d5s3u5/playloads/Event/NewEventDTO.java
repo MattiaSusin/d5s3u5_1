@@ -1,6 +1,5 @@
-package mattiasusin.d5s3u5.playloads;
+package mattiasusin.d5s3u5.playloads.Event;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
