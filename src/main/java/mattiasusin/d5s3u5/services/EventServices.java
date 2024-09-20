@@ -29,7 +29,6 @@ public class EventServices {
     }
 
     //POST
-
     public Event saveEvent(NewEventDTO body){
         Event newEvent = new Event(body.title(),body.description(),body.place_available(),body.date(),body.place());
 
@@ -37,19 +36,26 @@ public class EventServices {
     }
 
     // GET ID
-   /* public Event findByEventId(UUID eventId){
-        return this.eventsRepositoy.findBy(eventId).orElseThrow(() -> new NotFoundException(eventId));
-    }*/
+    public Event findByEventId(UUID eventId){
+        return this.eventsRepositoy.findById(eventId).orElseThrow(() -> new NotFoundException(eventId));
+    }
 
     // DELETE
 
-    // UPDATE
-       /* newEvent.setTitle(newEvent.getTitle());
-        newEvent.setDescription(newEvent.getDescription());
-        newEvent.setPlace_available(newEvent.getPlace_available());
-        newEvent.setDate(newEvent.getDate());
-        newEvent.setPlace(newEvent.getPlace());*/
+    // PUT
+    public Event findByEventIdAndUpdate(UUID eventId,Event newUserData){
 
-    // SAVE EVENT
+        Event found = this.findByEventId(eventId);
+        found.setTitle(newUserData.getTitle());
+        found.setDescription(newUserData.getDescription());
+        found.setPlace_available(newUserData.getPlace_available());
+        found.setDate(newUserData.getDate());
+        found.setPlace(newUserData.getPlace());
+
+        return this.eventsRepositoy.save(found);
+    }
+
+
+
 
 }

@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,5 +47,15 @@ public class EventControllers {
     }
 
     // GET ID
+    @GetMapping("/{eventId}")
+    public Event findByEventId(@PathVariable UUID eventId){return this.eventServices.findByEventId(eventId);}
+
+    // PUT
+
+    @PutMapping("/{eventId}")
+    public Event findByEventIdAndUpdate(@PathVariable UUID eventId,@RequestBody Event body){
+        return this.eventServices.findByEventIdAndUpdate(eventId,body);
+    }
+
 }
 
