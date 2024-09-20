@@ -17,7 +17,6 @@ public class Prenotation {
     @Id
     private UUID id;
 
-
     @ManyToOne
     @JoinColumn(name = "utente_id")
     private User user;
@@ -26,4 +25,23 @@ public class Prenotation {
     @ManyToOne
     @JoinColumn(name = "evento_id")
     private Event event;
+
+    // COSTRUTTORI
+
+    public Prenotation(User user, Event event) {
+        this.user = user;
+        this.event = event;
+    }
+
+    // TO STRING
+
+
+    @Override
+    public String toString() {
+        return "Prenotation{" +
+                "id=" + id +
+                ", user=" + user +
+                ", event=" + event +
+                '}';
+    }
 }
