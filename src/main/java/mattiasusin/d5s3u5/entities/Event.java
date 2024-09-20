@@ -8,6 +8,7 @@ import lombok.Setter;
 import mattiasusin.d5s3u5.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,10 +23,10 @@ public class Event {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    private String Title;
-    private String Description;
+    private String title;
+    private String description;
     private int place_available;
-    private Date date;
+    private LocalDate date;
     private String place;
 
 
@@ -39,27 +40,31 @@ public class Event {
 
     // COSTRUTTORI
 
-    public Event(String title, String description, int place_available, Date date, String place) {
-        Title = title;
-        Description = description;
+
+    public Event(String title, String description, int place_available, LocalDate date, String place) {
+        this.title = title;
+        this.description = description;
         this.place_available = place_available;
         this.date = date;
         this.place = place;
     }
 
 
+
+
     // TO STRING
+
 
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", Title='" + Title + '\'' +
-                ", Description='" + Description + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", place_available=" + place_available +
                 ", date=" + date +
                 ", place='" + place + '\'' +
+                ", user=" + user +
                 '}';
     }
-
 }
